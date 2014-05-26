@@ -1,0 +1,236 @@
+# THREE GOLD STARS
+
+# Sudoku [http://en.wikipedia.org/wiki/Sudoku]
+# is a logic puzzle where a game
+# is defined by a partially filled
+# 9 x 9 square of digits where each square
+# contains one of the digits 1,2,3,4,5,6,7,8,9.
+# For this question we will generalize
+# and simplify the game.
+
+# Define a procedure, check_sudoku,
+# that takes as input a square list
+# of lists representing an n x n
+# sudoku puzzle solution and returns the boolean
+# True if the input is a valid
+# sudoku square and returns the boolean False
+# otherwise.
+
+# A valid sudoku square satisfies these
+# two properties:
+
+#   1. Each column of the square contains
+#       each of the whole numbers from 1 to n exactly once.
+
+#   2. Each row of the square contains each
+#       of the whole numbers from 1 to n exactly once.
+
+# You may assume the the input is square and contains at
+# least one row and column.
+
+correct = [[1,2,3],
+           [2,3,1],
+           [3,1,2]]
+
+incorrect = [[1,2,3,4],
+             [2,3,1,3],
+             [3,1,2,3],
+             [4,4,4,4]]
+
+incorrect2 = [[1,2,3,4],
+             [2,3,1,4],
+             [4,1,2,3],
+             [3,4,1,2]]
+
+incorrect3 = [[1,2,3,4,5],
+              [2,3,1,5,6],
+              [4,5,2,1,3],
+              [3,4,5,2,1],
+              [5,6,4,3,2]]
+
+incorrect4 = [['a','b','c'],
+              ['b','c','a'],
+              ['c','a','b']]
+
+incorrect5 = [ [1, 1.5],
+               [1.5, 1]]
+
+# pseudocode:
+# while index is smaller than the length of lists (which equals column length/row length)
+# make two lists
+# list01 is the list of elements in the ith column
+# list02 is the list of elements in the ith column w/o copies
+# compare the lists
+# if list01 is the same as list02, we know the column is correct
+# if not, list01 is not correct.
+
+# psuedocode for row:
+# while index is smaller than length of lists
+# make two lists
+# list01 is a whole list
+# list02 is a list where duplicate values in list01 are removed
+# use while loop in a for loop!?
+
+
+def union(p,q):
+    for e in q:
+        if e not in p:
+            p.append(e)
+
+
+def column(lists):
+    i = 0
+    col = []
+    joiny = []
+    while i < len(lists):
+        for element in lists:
+            col.append(element[i])
+        union(joiny, col)
+        if col == joiny:
+            i = i + 1
+            col = []
+            joiny = []
+        else:
+            return False
+            break
+    if i == len(lists):
+        column_val = True
+
+def string_to_list(stringy):
+    i = 0
+    pieced = []
+    while i != len(stringy):
+        piece = stringy[i]
+        pieced.append(piece)
+        i = i + 1
+    return pieced
+
+
+
+
+
+def find_element(listy, thingy):
+    i = -1
+    for element in listy:
+        if element == thingy:
+            i = i + 1
+            return i
+        else:
+            i = i + 1
+
+    if thingy not in listy:
+        return -1
+    found = i
+
+print 'testing find_element'
+
+print find_element([1,2,3,4,2], 2)
+
+
+
+
+
+def duplicate_tester(listy, thingy):
+    j = 0
+    while j <= 1:
+        found = find_element(listy, thingy)
+        if found != -1:
+            j += 1
+        else:
+            return j
+            break
+
+
+print 'testing duplicate_tester'
+
+
+def row(list_of_lists):
+    for element in list_of_lists:
+        duplicate_tester(element, thingy)
+        if j >= 1:
+            return False
+        else:
+            return True
+
+
+print len([1,2,3])
+
+print 'testing not-in'
+cora = [1, 2, 3]
+num = 2
+if 2 not in cora:
+    print False
+
+#listy = [[1,2,3],[3,2,3], [1,3,2]]
+
+#i = 0
+#joiny = []
+##for element in listy:
+#    while i < len(element):
+#        union(joiny, element[i])
+#        i = i + 1
+#    if joiny == element:
+#        return True
+#    else:
+#        return False
+
+
+
+
+
+print string_to_list('coriander')
+
+
+# taped = []
+# lala = 'rr'
+# broked = lala[0]
+# taped.append(broked)
+# print taped
+# broked = lala[1]
+# taped.append(broked)
+# print 'second taped:'
+# print taped
+# joiny = []
+# print 'this is the new joiny'
+# for element in taped:
+    # union(joiny, taped)
+# print joiny
+
+testing = [[1,2,3],[4,5,6],[7,8,9]]
+print 'trying indexing (again):'
+print testing[0][1]
+
+
+#print 'this is the column function'
+#print column(incorrect3)
+
+def check_sudoku(list_of_lists):
+    column(list_of_lists)
+    if column:
+        return True
+    else:
+        return False
+
+print 'this is a test!'
+
+
+#print check_sudoku(incorrect)
+#>>> False
+
+#print check_sudoku(correct)
+#>>> True
+
+#print check_sudoku(incorrect2)
+#>>> False
+
+#print check_sudoku(incorrect3)
+#>>> False
+
+#print check_sudoku(incorrect4)
+#>>> False
+
+#print check_sudoku(incorrect5)
+#>>> False
+
+
+
